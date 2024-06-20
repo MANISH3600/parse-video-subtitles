@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Video List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="display-4">Video List</h1>
+        <form method="get" action="{% url 'search' %}" class="form-inline">
+            <input type="text" name="q" placeholder="Search subtitles" class="form-control">
+            <button type="submit" class="btn btn-secondary">Search</button>
+            <a href="{% url 'upload_video' %}" class="btn btn-primary ml-2">Upload a new video</a>
+        </form>
+        <ul class="list-group">
+            {% for video in videos %}
+            <li class="list-group-item">
+                <a href="{{ video.local_path }}" target="_blank">{{ video.title }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

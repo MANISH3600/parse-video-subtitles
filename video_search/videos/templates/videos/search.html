@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        /* Add some padding to the body */
+        body {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="display-4">Search Results for "{{ query }}"</h1>
+        {% if results %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Video Title</th>
+                    <th>Text</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for result in results %}
+                <tr>
+                    <td>{{ result.video_title }}</td>
+                    <td>{{ result.text }}</td>
+                    <td>{{ result.start_time }}</td>
+                    <td>{{ result.end_time }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4">No results found</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="text-muted">No results found for "{{ query }}"</p>
+        {% endif %}
+        <br>
+        <a href="{% url 'video_list' %}" class="btn btn-secondary">Back to Video List</a>
+    </div>
+</body>
+</html>
